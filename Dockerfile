@@ -1,7 +1,10 @@
-FROM rawmind/alpine-monit:0.5.20-2
-MAINTAINER Raul Sanchez <rawmind@gmail.com>
+# Use robtimmer/alpine-monit as base image
+FROM robtimmer/alpine-monit
 
-# Set environment
+# Set maintainer
+MAINTAINER Rob Timmer <rob@robtimmer.com>
+
+# Set environment variables
 ENV SERVICE_NAME=traefik \
     SERVICE_HOME=/opt/traefik \
     SERVICE_VERSION=v1.1.2 \
@@ -22,12 +25,19 @@ RUN mkdir -p ${SERVICE_HOME}/bin ${SERVICE_HOME}/etc ${SERVICE_HOME}/log ${SERVI
     touch ${SERVICE_HOME}/etc/rules.toml && \
     chmod +x ${SERVICE_HOME}/bin/traefik && \
     addgroup -g ${SERVICE_GID} ${SERVICE_GROUP} && \
-    adduser -g "${SERVICE_NAME} user" -D -h ${SERVICE_HOME} -G ${SERVICE_GROUP} -s /sbin/nologin -u ${SERVICE_UID} ${SERVICE_USER} 
+    adduser -g "${SERVICE_NAME} user" -D -h ${SERVICE_HOME} -G ${SERVICE_GROUP} -s /sbin/nologin -u ${SERVICE_UID} ${SERVICE_USER}
+
+# Add root files to the image root
 ADD root /
+
+# Setup traefik (with monit)
 RUN chmod +x ${SERVICE_HOME}/bin/*.sh && \
     chown -R ${SERVICE_USER}:${SERVICE_GROUP} ${SERVICE_HOME} /opt/monit && \
     setcap 'cap_net_bind_service=+ep' ${SERVICE_HOME}/bin/traefik
 
+# Set user
 USER $SERVICE_USER
+
+# Set working directory
 WORKDIR $SERVICE_HOME
 
