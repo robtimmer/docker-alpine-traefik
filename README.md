@@ -1,29 +1,5 @@
-[![](https://images.microbadger.com/badges/image/rawmind/alpine-traefik.svg)](https://microbadger.com/images/rawmind/alpine-traefik "Get your own image badge on microbadger.com")
-
 alpine-traefik 
 ==============
-
-This image is the traefik base. It comes from [alpine-monit][alpine-monit].
-
-## Build
-
-```
-docker build -t rawmind/alpine-traefik:<version> .
-```
-
-## Versions
-
-- `1.1.2-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.1.2-1/Dockerfile)
-- `1.1.1-2` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.1.1-2/Dockerfile)
-- `1.0.3-1` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.3-1/Dockerfile)
-- `1.0.2-6` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.2-6/Dockerfile)
-- `1.0.1-4` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.1-4/Dockerfile)
-- `1.0.0` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.0/Dockerfile)
-- `1.0.0-rc3-3` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.0-rc3-3/Dockerfile)
-- `1.0.0-rc2-6` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.0-rc2-6/Dockerfile)
-- `1.0.0-beta.771` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.0-beta.771/Dockerfile)
-- `1.0.0-beta.555-6` [(Dockerfile)](https://github.com/rawmind0/alpine-traefik/blob/1.0.0-beta.555-6/Dockerfile)
-
 
 ## Configuration
 
@@ -71,22 +47,4 @@ You could also include FROM rawmind/alpine-traefik at the top of your Dockerfile
 
 If you enable SSL configuration, you could enable traefik letsencrypt support as well (ACME). To do it, set TRAEFIK_ACME_ENABLE="true".
 
-
-### Rancher
-
-If you are running it in rancher, you could run [rancher-traefik][rancher-traefik] as a sidekick to get dynamic configuration.
-
-
-## Example
-
-See [rancher-example][rancher-example], that run a traefik lb in all infrastructure servers and publish ${TRAEFIK_HTTP_PORT}, ${TRAEFIK_HTTPS_PORT} and ${TRAEFIK_ADMIN_PORT} throught them.
-
-
-## TODO
-
-Add sni automation to the traefik.
-
-[alpine-monit]: https://github.com/rawmind0/alpine-monit/
 [traefik]: https://github.com/containous/traefik
-[rancher-traefik]: https://hub.docker.com/r/rawmind/rancher-traefik/
-[rancher-example]: https://github.com/rawmind0/alpine-traefik/tree/master/rancher
