@@ -28,7 +28,7 @@ function serviceCheck {
 function serviceStart {
     serviceCheck
     serviceLog
-    serviceAccess
+    # serviceAccess
     log "[ Starting ${SERVICE_NAME}... ]"
     nohup ${SERVICE_HOME}/bin/traefik --configFile=${SERVICE_HOME}/etc/traefik.toml &
     echo $! > ${SERVICE_HOME}/traefik.pid
